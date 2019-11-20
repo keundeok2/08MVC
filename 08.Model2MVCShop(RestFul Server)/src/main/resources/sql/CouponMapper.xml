@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		
+<mapper namespace="CouponMapper">
+
+	<insert id="createCoupon" parameterType="coupon">
+		INSERT INTO gen_coupon
+		(coupon_no, coupon_name, discount_rate, limit_date, repetition)
+		VALUES (SEQ_COUPON_COUPON_NO.NEXTVAL,
+				#{couponName:VARCHAR},
+				#{discountRate:VARCHAR},
+				#{limitDate:DATE},
+				#{repetition:CHAR})
+	</insert>
+	
+	
+	
+</mapper>

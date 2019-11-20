@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BasketMapper">
+
+	<!--
+	<resultMap type="basket" id="basketResultMap">
+		<result property="userId" column="USER_ID" jdbcType="VARCHAR"/>	
+		<result property="addDate" column="ADD_DATE" jdbcType="DATE"/>
+		
+		<association property="basketProd" javaType="product">
+			<id property="prodNo" column="PROD_NO" jdbcType="VARCHAR"/>		
+			<result property="prodName" column="PROD_NAME" jdbcType="VARCHAR"/>
+			<result property="prodDetail" column="PROD_DETAIL" jdbcType="VARCHAR"/>
+			<result property="manuDate" column="MANUFACTURE_DAY" jdbcType="VARCHAR"/>
+			<result property="price" column="PRICE" jdbcType="NUMERIC"/>
+			<result property="fileName" column="IMAGE_FILE" jdbcType="VARCHAR"/>
+			<result property="regDate" column="PROD_REG_DATE" jdbcType="DATE"/>
+			<result property="prodTranCode" column="TRAN_STATUS_CODE" jdbcType="VARCHAR"/>
+		</association>
+	</resultMap>
+	-->
+	
+	<resultMap type="basket" id="basketResultMap">
+		<result property="userId" column="USER_ID" jdbcType="VARCHAR"/>	
+		<result property="basketProd.prodNo" column="PROD_NO" jdbcType="INTEGER"/>
+		<result property="basketProd.prodName" column="PROD_NAME" jdbcType="VARCHAR"/>
+		<result property="basketProd.fileName" column="IMAGE_FILE" jdbcType="VARCHAR"/>
+		<result property="basketProd.price" column="PRICE" jdbcType="INTEGER"/> 
+		<result property="addDate" column="ADD_DATE" jdbcType="DATE"/>
+	</resultMap>
+
+	
+	<insert id="addBasket" parameterType="basket">
+		INSERT INTO basket (user_id, prod_no, add_date)
+		VALUES (#{userId},
+				#{basketProd.prodNo},
+				SYSDATE)
+	</insert>
+	
+	<select id="getBasketList" parameterType="map" resultMap="basketResultMap">
+		SELECT *
+	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
+	  			FROM (	SELECT b.user_id, b.add_date, p.*
+	  					FROM basket b, product p
+	  					WHERE b.prod_no = p.prod_no AND user_id = #{userId}
+	  					ORDER BY b.add_date DESC ) inner_table
+				WHERE ROWNUM &lt;= #{search.endRowNum} )
+		WHERE row_seq BETWEEN #{search.startRowNum} AND #{search.endRowNum} 
+	</select>
+	
+	<delete id="deleteBasket" parameterType="basket">
+		DELETE FROM basket
+		WHERE user_id = #{userId}
+		AND prod_no = #{basketProd.prodNo}
+	</delete>
+	
+	<select id="getTotalCount" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM (	SELECT * 
+	  			FROM basket
+	  			WHERE user_id = #{userId}  ) countTable
+	</select>
+	
+	
+</mapper>
+		
