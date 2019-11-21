@@ -99,12 +99,14 @@ public class User {
 		return phone3;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "UserVO : [userId] "+userId+" [userName] "+userName+" [password] "+password+" [role] "+ role
-			+" [ssn] "+ssn+" [phone] "+phone+" [email] "+email+" [regDate] "+regDate;
+		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", role=" + role
+				+ ", ssn=" + ssn + ", phone=" + phone + ", addr=" + addr + ", email=" + email + ", regDate=" + regDate
+				+ ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + "]";
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////////////////////
 	// JSON ==> Domain Object  Binding을 위해 추가된 부분
 	// POJO 의 중요성

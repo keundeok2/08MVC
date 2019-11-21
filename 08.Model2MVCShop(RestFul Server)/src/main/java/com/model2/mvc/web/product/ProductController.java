@@ -51,7 +51,7 @@ public class ProductController {
 //	private static final String UPLOAD_PATH_TOMCAT = "C:\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\08.Model2MVCShop(RestFul Server)\\images\\uploadFiles";
 	
 //	git workspace에 저장하는 경로
-	private static final String UPLOAD_PATH = "C:\\workspace\\08.Model2MVCShop(RestFul Server)\\WebContent\\images\\uploadFiles";
+	private static final String UPLOAD_PATH = "C:\\Users\\User\\git\\08MVC\\08.Model2MVCShop(RestFul Server)\\WebContent\\images\\uploadFiles";
 
 //	Original addProduct
 //	@RequestMapping(value = "addProduct", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class ProductController {
 //		Spring Multiple FileUpload Test
 	@RequestMapping(value = "addProduct", method = RequestMethod.POST)
 	public String addProduct(@RequestParam("uploadFiles") ArrayList<MultipartFile> fileName, @ModelAttribute("product") Product product) throws Exception {
-		 String result = "";
+		String result = "";
 		 int i = 0;
 		 System.out.println( "addProduct() start...");
 		 for (MultipartFile files : fileName) {
