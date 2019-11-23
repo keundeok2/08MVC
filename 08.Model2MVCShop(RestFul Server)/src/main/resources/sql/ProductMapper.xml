@@ -87,7 +87,7 @@
 		<set>
 			prod_name = #{prodName},
 			prod_detail = #{prodDetail},
-			manufacture_day =#{manuDate},
+			manufacture_day = #{manuDate},
 			price = #{price},
 			image_file = #{fileName},
 			prod_quantity = #{prodQuantity}

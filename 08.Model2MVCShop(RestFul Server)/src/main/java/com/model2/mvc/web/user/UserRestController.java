@@ -120,7 +120,7 @@ public class UserRestController {
 		return map;
 	}
 	
-	@RequestMapping(value = "json/listUser")
+	@RequestMapping(value = "json/listUser", method = RequestMethod.POST)
 	public Map listUser(@RequestBody Search search) throws Exception{
 		
 		System.out.println("/user/listUser : POST ");

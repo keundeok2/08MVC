@@ -64,13 +64,13 @@ public class RestHttpClientAppUser {
 		
 //		RestHttpClientAppUser.listUserGetTest_Codehaus();
 		
-//		RestHttpClientAppUser.listUserPostTest_Codehaus();
+		RestHttpClientAppUser.listUserPostTest_Codehaus();
 		
 //		RestHttpClientAppUser.listUserPostTest_JsonSimple();
 		
 //		RestHttpClientAppUser.checkDuplicationPost_JsonSimple();
 		
-		RestHttpClientAppUser.checkDuplicationPost_Codehaus();
+//		RestHttpClientAppUser.checkDuplicationPost_Codehaus();
 	}
 
 //================================================================//
@@ -493,7 +493,6 @@ public class RestHttpClientAppUser {
 		System.out.println(json);
 		
 	}
-	
 	
 	public static void listUserGetTest_JsonSimple() throws Exception {
 		HttpClient httpClient = new DefaultHttpClient();
